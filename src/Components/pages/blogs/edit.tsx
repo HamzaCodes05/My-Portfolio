@@ -1,11 +1,16 @@
+"use client";
+
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import MDEditor from "@uiw/react-md-editor";
+import { useParams, useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
 import { useBlog, useEditBlog } from "../hooks/useBlogs";
 
+const MDEditor = dynamic(() => import("@uiw/react-md-editor"), { ssr: false });
+
 export default function EditBlog() {
-  const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
+  const params = useParams();
+  const id = params?.id as string | undefined;
+  const router = useRouter();
 
   const { data: blog, isLoading, isError } = useBlog(id);
   const editBlog = useEditBlog();
@@ -22,11 +27,7 @@ export default function EditBlog() {
       setAuthor(blog.author);
       setContent(blog.content || "");
       if (blog.image)
-        setPreviewImage(
-          blog.image.startsWith("http")
-            ? blog.image
-            : `http://localhost:8000/${blog.image.replace(/^\/+/, "")}`
-        );
+        setPreviewImage(blog.image);
     }
   }, [blog]);
 
@@ -51,7 +52,7 @@ export default function EditBlog() {
       {
         onSuccess: () => {
           alert("✅ Blog updated successfully!");
-          navigate("/dashboard/view");
+          router.push("/dashboard/view");
         },
         onError: () => alert("❌ Failed to update blog"),
       }
@@ -92,12 +93,14 @@ export default function EditBlog() {
 
         <div data-color-mode="dark">
           <label className="block text-sm text-gray-400 mb-1">Content</label>
-          <MDEditor
-            value={content}
-            onChange={(val) => setContent(val || "")}
-            height={300}
-            preview="live"
-          />
+          {MDEditor && (
+            <MDEditor
+              value={content}
+              onChange={(val) => setContent(val || "")}
+              height={300}
+              preview="live"
+            />
+          )}
         </div>
 
         <div>

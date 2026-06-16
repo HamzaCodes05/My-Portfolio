@@ -25,4 +25,9 @@ dist-ssr
 
 .vercel
 /uploads
+/profiles
+/projects_uploads
 .env
+
+.next
+server/dist

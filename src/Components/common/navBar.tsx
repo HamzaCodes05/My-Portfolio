@@ -1,7 +1,7 @@
-// import Hlogo from "../assets/h.png";/
+"use client";
+
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import "../../index.css"; // Ensure Tailwind CSS is imported
 import Container from "./container";
 
 const links = [
@@ -31,7 +31,6 @@ const Navbar = ({ classes = {} }: NavbarProps) => {
       <Container>
         <div className="flex justify-between items-center py-4 px-6 text-white">
           <h1 className="text-5xl font-extrabold text-outline">H</h1>
-          {/* Mobile toggle */}
           <button
             className="lg:hidden block"
             onClick={() => setIsOpen(!isOpen)}
@@ -39,7 +38,6 @@ const Navbar = ({ classes = {} }: NavbarProps) => {
             {isOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
           </button>
 
-          {/* Desktop Menu */}
           <div className="hidden lg:flex gap-8 font-medium">
             {links.map((link, index) => (
               <a
@@ -55,7 +53,6 @@ const Navbar = ({ classes = {} }: NavbarProps) => {
         </div>
       </Container>
 
-      {/* Mobile Menu */}
       {isOpen && (
         <div className="lg:hidden flex flex-col gap-6 px-6 pb-6 bg-gray-800 text-white">
           {links.map((link, index) => (

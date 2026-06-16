@@ -1,12 +1,19 @@
-import { useParams, useNavigate } from "react-router-dom";
-import MDEditor from "@uiw/react-md-editor";
+"use client";
+
+import { useParams, useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
 import { useBlog } from "../hooks/useBlogs";
 
-export default function BlogDetail() {
-  const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
+const MDPreview = dynamic(
+  () => import("@uiw/react-md-editor").then((mod) => mod.default.Markdown),
+  { ssr: false }
+);
 
-  // Fetch blog using React Query hook
+export default function BlogDetail() {
+  const params = useParams();
+  const id = params?.id as string | undefined;
+  const router = useRouter();
+
   const { data: blog, isLoading, isError } = useBlog(id);
 
   if (isLoading)
@@ -17,18 +24,11 @@ export default function BlogDetail() {
 
   const markdownContent = blog.content || "";
 
-  // Construct correct image URL
-  const getImageUrl = (image?: string) => {
-    if (!image) return null;
-    return image.startsWith("http")
-      ? image
-      : `http://localhost:8000/${image.replace(/^\/+/, "")}`;
-  };
+  const getImageUrl = (image?: string) => image || null;
 
   return (
     <div className="bg-black min-h-screen text-white">
       <div className="max-w-4xl mx-auto p-6">
-        {/* Blog image */}
         {getImageUrl(blog.image) && (
           <img
             src={getImageUrl(blog.image)!}
@@ -37,7 +37,6 @@ export default function BlogDetail() {
           />
         )}
 
-        {/* Blog title & author */}
         <h1 className="text-4xl font-bold mb-2">{blog.title}</h1>
         <p className="text-gray-400 mb-6">
           By {blog.author} •{" "}
@@ -48,9 +47,8 @@ export default function BlogDetail() {
           })}
         </p>
 
-        {/* Markdown content */}
         <div data-color-mode="dark" className="p-6 rounded-2xl shadow-lg mb-10">
-          <MDEditor.Markdown
+          <MDPreview
             source={markdownContent}
             style={{
               backgroundColor: "transparent",
@@ -62,9 +60,8 @@ export default function BlogDetail() {
           />
         </div>
 
-        {/* Back button */}
         <button
-          onClick={() => navigate(-1)}
+          onClick={() => router.back()}
           className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition"
         >
           ← Back to Blogs

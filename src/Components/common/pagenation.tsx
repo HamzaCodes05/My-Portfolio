@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 
 interface PaginationProps {
@@ -20,7 +22,6 @@ const Pagination: React.FC<PaginationProps> = ({
 
   return (
     <ul className="flex items-center space-x-2">
-      {/* Prev */}
       <li>
         <button
           className="px-4 py-2 border rounded-md hover:enabled:bg-gray-300 dark:text-dark-primary-default disabled:opacity-80"
@@ -31,7 +32,6 @@ const Pagination: React.FC<PaginationProps> = ({
         </button>
       </li>
 
-      {/* Page Numbers */}
       {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
         <li key={page}>
           <button
@@ -47,7 +47,6 @@ const Pagination: React.FC<PaginationProps> = ({
         </li>
       ))}
 
-      {/* Next */}
       <li>
         <button
           className="px-4 py-2 border rounded-md hover:enabled:bg-gray-300 dark:text-dark-primary-default disabled:opacity-80"

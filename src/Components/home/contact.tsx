@@ -1,3 +1,5 @@
+"use client";
+
 import { ChevronUp } from "lucide-react";
 import Container from "../common/container";
 import { useEffect, useState, useRef } from "react";

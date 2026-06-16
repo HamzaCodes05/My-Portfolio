@@ -1,12 +1,19 @@
+"use client";
+
 import "@uiw/react-md-editor/markdown-editor.css";
 import "@uiw/react-markdown-preview/markdown.css";
 import { useQuery } from "@tanstack/react-query";
-import MDEditor from "@uiw/react-md-editor";
-import { Link } from "react-router-dom";
+import dynamic from "next/dynamic";
+import Link from "next/link";
 import Pagination from "../../common/pagenation";
 import Container from "../../common/container";
-import Bg from "../../../assets/bg.mp4";
+
 import React from "react";
+
+const MDPreview = dynamic(
+  () => import("@uiw/react-md-editor").then((mod) => mod.default.Markdown),
+  { ssr: false }
+);
 
 interface BlogItem {
   id: number;
@@ -17,9 +24,8 @@ interface BlogItem {
   createdAt: string;
 }
 
-// Fetch function for React Query
 const fetchBlogs = async (): Promise<BlogItem[]> => {
-  const res = await fetch("http://localhost:8000/api/blogs");
+  const res = await fetch("/api/blogs");
   if (!res.ok) throw new Error("Failed to fetch blogs");
   return res.json();
 };
@@ -33,7 +39,7 @@ const Blog = () => {
   } = useQuery({
     queryKey: ["blogs"],
     queryFn: fetchBlogs,
-    staleTime: 1000 * 60 * 2, // 2 minutes caching
+    staleTime: 1000 * 60 * 2,
   });
 
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -61,7 +67,6 @@ const Blog = () => {
 
   return (
     <div className="relative min-h-screen text-white overflow-hidden">
-      {/* Background video */}
       <video
         autoPlay
         loop
@@ -69,7 +74,7 @@ const Blog = () => {
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover z-[-1]"
       >
-        <source src={Bg} type="video/mp4" />
+        <source src="/bg.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-black/50 z-0"></div>
 
@@ -86,25 +91,18 @@ const Blog = () => {
                 className="backdrop-blur-sm p-5 rounded-3xl shadow-md hover:shadow-lg transition-all duration-300"
               >
                 <img
-                  src={
-                    blog.image.startsWith("http")
-                      ? blog.image
-                      : `http://localhost:8000/${blog.image.replace(
-                          /^\/+/,
-                          ""
-                        )}`
-                  }
+                  src={blog.image || ""}
                   alt={blog.title}
                   className="w-full h-64 object-cover rounded-3xl mb-5 hover:scale-105 transition-transform duration-300"
                 />
 
                 <p className="text-2xl font-bold mb-2">{blog.title}</p>
                 <p className="text-sm text-gray-400 mb-2 font-bold">
-                  By {blog.author} | Date:
+                  By {blog.author} | Date:{" "}
                   {new Date(blog.createdAt).toLocaleDateString()}
                 </p>
                 <div className="text-gray-300 mb-2 prose max-w-none prose-p:text-gray-300 prose-headings:text-white backdrop-blur-sm prose-strong:text-white">
-                  <MDEditor.Markdown
+                  <MDPreview
                     source={
                       blog.content.length > 150
                         ? blog.content.slice(0, 150) + "..."
@@ -113,10 +111,7 @@ const Blog = () => {
                   />
                 </div>
 
-                <Link
-                  to={`/blog/${blog.id}`}
-                  className="text-blue-600 hover:underline"
-                >
+                <Link href={`/blog/${blog.id}`} className="text-blue-600 hover:underline">
                   Read More →
                 </Link>
               </div>

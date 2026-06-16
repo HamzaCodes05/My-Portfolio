@@ -1,5 +1,7 @@
+"use client";
+
 import Pagination from "../../common/pagenation";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import {
   useProjects,
@@ -8,7 +10,7 @@ import {
 } from "../../pages/hooks/useProjects";
 
 export default function ManageProjects() {
-  const navigate = useNavigate();
+  const router = useRouter();
   const { data: projects, isLoading, isError } = useProjects();
   const deleteProject = useDeleteProject();
 
@@ -47,7 +49,7 @@ export default function ManageProjects() {
             📰 Manage Projects
           </h1>
           <button
-            onClick={() => navigate("/dashboard/projects/add")}
+            onClick={() => router.push("/dashboard/projects/add")}
             className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-semibold transition"
           >
             ➕ Add New Project
@@ -91,7 +93,7 @@ export default function ManageProjects() {
                     <td className="p-3">
                       {project.image ? (
                         <img
-                          src={`http://localhost:8000${project.image}`}
+                          src={project.image}
                           alt={project.title}
                           className="w-20 h-14 object-cover rounded-md border border-gray-700"
                         />

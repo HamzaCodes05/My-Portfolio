@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import Landing from "./landing";
 import Experience from "./experience";

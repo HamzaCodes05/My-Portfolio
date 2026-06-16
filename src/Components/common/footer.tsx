@@ -46,7 +46,7 @@ const Footer = () => {
             >
               {/* Social Icon */}
               <img
-                src={item.imgSrc1}
+                src={typeof item.imgSrc1 === "string" ? item.imgSrc1 : item.imgSrc1.src}
                 alt={item.alt}
                 className="w-8 h-8 mb-2 transition-transform group-hover:scale-90"
               />

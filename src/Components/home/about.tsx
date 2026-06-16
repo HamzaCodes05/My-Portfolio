@@ -34,7 +34,7 @@ const About = () => {
           {/* Image Section */}
           <div className="flex justify-center">
             <img
-              src={Avatar}
+              src={Avatar.src}
               alt="Portrait of Hamza Latif"
               className="max-w-sm rounded-2xl shadow-lg"
             />

@@ -1,9 +1,11 @@
+"use client";
+
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { useAddProject } from "../hooks/useProjects";
 
 export default function AddProject() {
-  const navigate = useNavigate();
+  const router = useRouter();
   const addProject = useAddProject();
 
   const [title, setTitle] = useState("");
@@ -27,7 +29,7 @@ export default function AddProject() {
     addProject.mutate(formData, {
       onSuccess: () => {
         alert("✅ Project added successfully!");
-        navigate("/dashboard/projects/view");
+        router.push("/dashboard/projects/view");
       },
       onError: () => alert("❌ Failed to add project"),
     });
@@ -72,18 +74,16 @@ export default function AddProject() {
 
           {previewImage && (
             <div className="relative w-40 h-32 mt-2">
-              {/* Remove button */}
               <button
                 type="button"
                 onClick={() => {
                   setPreviewImage(null);
-                  setImage(null); // also reset your file state
+                  setImage(null);
                 }}
                 className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center font-bold hover:bg-red-700 transition"
               >
                 -
               </button>
-              {/* Preview image */}
               <img
                 src={previewImage}
                 alt="Preview"

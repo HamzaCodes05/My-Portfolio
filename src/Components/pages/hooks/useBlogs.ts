@@ -10,68 +10,51 @@ export interface Blog {
   createdAt: string;
 }
 
-// ✅ Fetch all blogs
-export const useBlogs = () => {
-  return useQuery<Blog[], Error>({
+export const useBlogs = () =>
+  useQuery<Blog[], Error>({
     queryKey: ["blogs"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:8000/api/blogs");
+      const res = await axios.get("/api/blogs");
       return res.data;
     },
   });
-};
 
-// ✅ Fetch single blog
-export const useBlog = (id?: string) => {
-  return useQuery<Blog, Error>({
+export const useBlog = (id?: string) =>
+  useQuery<Blog, Error>({
     queryKey: ["blog", id],
     queryFn: async () => {
       if (!id) throw new Error("No blog ID");
-      const res = await axios.get(`http://localhost:8000/api/blogs/${id}`);
+      const res = await axios.get(`/api/blogs/${id}`);
       return res.data;
     },
     enabled: !!id,
   });
-};
 
-// ✅ Add a blog
 export const useAddBlog = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (formData: FormData) => {
-      await axios.post("http://localhost:8000/api/blogs", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      await axios.post("/api/blogs", formData);
     },
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["blogs"] }),
   });
 };
 
-// ✅ Edit a blog
 export const useEditBlog = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async ({
-      id,
-      formData,
-    }: {
-      id: string;
-      formData: FormData;
-    }) => {
-      await axios.put(`http://localhost:8000/api/blogs/${id}`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+    mutationFn: async ({ id, formData }: { id: string; formData: FormData }) => {
+      await axios.put(`/api/blogs/${id}`, formData);
     },
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["blogs"] }),
   });
 };
 
-// ✅ Delete a blog
 export const useDeleteBlog = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (id: number) => {
-      await axios.delete(`http://localhost:8000/api/blogs/${id}`);
+      await axios.delete(`/api/blogs/${id}`);
     },
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["blogs"] }),
   });

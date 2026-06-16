@@ -1,3 +1,5 @@
+"use client";
+
 import { useProjects } from "../pages/hooks/useProjects";
 import FlippingText from "../common/flippingText";
 import Game from "../../assets/download.png";
@@ -96,7 +98,7 @@ const MyWork = () => {
                 </p>
               </div>
               <img
-                src={Game}
+                src={Game.src}
                 alt="Screenshot of client project"
                 className="mx-auto w-full max-w-md rounded-2xl shadow-lg"
               />

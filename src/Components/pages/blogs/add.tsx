@@ -1,10 +1,14 @@
+"use client";
+
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import MDEditor from "@uiw/react-md-editor";
+import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
 import { useAddBlog } from "../hooks/useBlogs";
 
+const MDEditor = dynamic(() => import("@uiw/react-md-editor"), { ssr: false });
+
 export default function AddBlog() {
-  const navigate = useNavigate();
+  const router = useRouter();
   const addBlog = useAddBlog();
 
   const [title, setTitle] = useState("");
@@ -30,7 +34,7 @@ export default function AddBlog() {
     addBlog.mutate(formData, {
       onSuccess: () => {
         alert("✅ Blog added successfully!");
-        navigate("/dashboard/view");
+        router.push("/dashboard/view");
       },
       onError: () => alert("❌ Failed to add blog"),
     });
@@ -64,12 +68,14 @@ export default function AddBlog() {
 
         <div data-color-mode="dark">
           <label className="block text-sm text-gray-400 mb-1">Content</label>
-          <MDEditor
-            value={content}
-            onChange={(val) => setContent(val || "")}
-            height={300}
-            preview="live"
-          />
+          {MDEditor && (
+            <MDEditor
+              value={content}
+              onChange={(val) => setContent(val || "")}
+              height={300}
+              preview="live"
+            />
+          )}
         </div>
 
         <div>
@@ -85,18 +91,16 @@ export default function AddBlog() {
 
           {previewImage && (
             <div className="relative w-40 h-32 mt-2">
-              {/* Remove button */}
               <button
                 type="button"
                 onClick={() => {
                   setPreviewImage(null);
-                  setImage(null); // also reset your file state
+                  setImage(null);
                 }}
                 className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center font-bold hover:bg-red-700 transition"
               >
                 -
               </button>
-              {/* Preview image */}
               <img
                 src={previewImage}
                 alt="Preview"

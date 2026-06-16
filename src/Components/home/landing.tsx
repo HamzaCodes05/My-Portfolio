@@ -1,6 +1,7 @@
+"use client";
+
 import Img from "../../assets/image.png";
 import { ChevronDown } from "lucide-react";
-import "../../index.css";
 
 const Landing = () => {
   const scrollToNext = () => {
@@ -15,14 +16,12 @@ const Landing = () => {
       id="landing"
       className="relative w-full h-screen bg-black flex items-center justify-center overflow-hidden"
     >
-      {/* Background Image */}
       <img
-        src={Img}
+        src={Img.src}
         alt="Profile"
         className="absolute inset-0 w-full h-full object-cover opacity-40"
       />
 
-      {/* Center Content */}
       <div className="relative z-10 text-center flex flex-col items-center">
         <div className="relative leading-none">
           <h1 className="text-4xl xs:text-9xl md:text-6xl lg:text-9xl font-extrabold tracking-tight bg-clip-text text-outline">
@@ -38,7 +37,6 @@ const Landing = () => {
         </p>
       </div>
 
-      {/* Scroll Button */}
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
         <button onClick={scrollToNext} aria-label="Scroll to Next">
           <ChevronDown className="text-white w-8 h-8 animate-bounce" />

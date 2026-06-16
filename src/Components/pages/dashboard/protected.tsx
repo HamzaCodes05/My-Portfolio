@@ -1,12 +1,23 @@
-import { Navigate } from "react-router-dom";
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
 }
 
 const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
-  const token = localStorage.getItem("token");
-  return token ? <>{children}</> : <Navigate to="/dashboard/login" replace />;
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.replace("/dashboard/login");
+    }
+  }, [router]);
+
+  return <>{children}</>;
 };
 
 export default ProtectedRoute;

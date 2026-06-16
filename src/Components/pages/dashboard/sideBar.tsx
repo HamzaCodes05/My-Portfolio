@@ -1,8 +1,10 @@
-// src/components/DashboardSidebar.tsx
-import { Link, useLocation } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function DashboardSidebar() {
-  const location = useLocation();
+  const pathname = usePathname();
 
   const links = [
     { name: "Home", path: "/" },
@@ -19,11 +21,9 @@ export default function DashboardSidebar() {
         {links.map((link) => (
           <Link
             key={link.path}
-            to={link.path}
+            href={link.path}
             className={`block px-4 py-2 rounded-md ${
-              location.pathname === link.path
-                ? "bg-blue-600"
-                : "hover:bg-gray-700"
+              pathname === link.path ? "bg-blue-600" : "hover:bg-gray-700"
             }`}
           >
             {link.name}

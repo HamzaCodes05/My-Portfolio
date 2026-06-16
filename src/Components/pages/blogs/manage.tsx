@@ -1,10 +1,12 @@
+"use client";
+
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import Pagination from "../../common/pagenation";
 import { useBlogs, useDeleteBlog } from "../hooks/useBlogs";
 
 export default function ManageBlogs() {
-  const navigate = useNavigate();
+  const router = useRouter();
   const { data: blogs, isLoading, isError } = useBlogs();
   const deleteBlog = useDeleteBlog();
 
@@ -28,10 +30,7 @@ export default function ManageBlogs() {
 
   const totalPages = Math.ceil(filteredBlogs.length / rowsPerPage);
   const startIndex = (currentPage - 1) * rowsPerPage;
-  const visibleBlogs = filteredBlogs.slice(
-    startIndex,
-    startIndex + rowsPerPage
-  );
+  const visibleBlogs = filteredBlogs.slice(startIndex, startIndex + rowsPerPage);
 
   return (
     <div className="bg-black min-h-screen text-white p-6">
@@ -39,7 +38,7 @@ export default function ManageBlogs() {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-4">
           <h1 className="text-3xl font-bold text-gray-200">📰 Manage Blogs</h1>
           <button
-            onClick={() => navigate("/dashboard/add")}
+            onClick={() => router.push("/dashboard/add")}
             className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-semibold transition"
           >
             ➕ Add New Blog
@@ -84,14 +83,7 @@ export default function ManageBlogs() {
                     <td className="p-3">
                       {blog.image ? (
                         <img
-                          src={
-                            blog.image.startsWith("http")
-                              ? blog.image
-                              : `http://localhost:8000/${blog.image.replace(
-                                  /^\/+/,
-                                  ""
-                                )}`
-                          }
+                          src={blog.image}
                           alt={blog.title}
                           className="w-20 h-14 object-cover rounded-md border border-gray-700"
                         />
@@ -108,7 +100,7 @@ export default function ManageBlogs() {
                     </td>
                     <td className="p-3 text-center space-x-3">
                       <button
-                        onClick={() => navigate(`/dashboard/edit/${blog.id}`)}
+                        onClick={() => router.push(`/dashboard/edit/${blog.id}`)}
                         className="text-blue-400 hover:text-blue-500 font-medium"
                       >
                         ✏️ Edit
@@ -120,7 +112,7 @@ export default function ManageBlogs() {
                         🗑️ Delete
                       </button>
                       <button
-                        onClick={() => navigate(`/blog/${blog.id}`)}
+                        onClick={() => router.push(`/blog/${blog.id}`)}
                         className="text-green-400 hover:text-green-500 font-medium"
                       >
                         🔍 View
