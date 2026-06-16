@@ -11,7 +11,6 @@ const links = [
   { ref: "/services", text: "Services" },
   { ref: "/work", text: "Work" },
   { ref: "/contact", text: "Contact" },
-  { ref: "/dashboard", text: "Dashboard" },
 ];
 
 interface NavbarProps {
