@@ -7,9 +7,8 @@ export default function DashboardSidebar() {
   const pathname = usePathname();
 
   const links = [
-    { name: "Home", path: "/" },
-    { name: "Blogs", path: "/dashboard/blogs" },
-    { name: "Projects", path: "/dashboard/projects" },
+    { name: "Overview", path: "/dashboard" },
+    { name: "Projects", path: "/dashboard/projects/view" },
   ];
 
   return (

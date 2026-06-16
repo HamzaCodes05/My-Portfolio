@@ -3,14 +3,7 @@
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import {
-  Menu,
-  LogOut,
-  Home,
-  FolderKanban,
-  FileText,
-  Settings,
-} from "lucide-react";
+import { Menu, LogOut, Home, FolderKanban, Settings } from "lucide-react";
 import { useState, useEffect } from "react";
 
 interface UserType {
@@ -39,7 +32,9 @@ export default function DashboardLayout({
     if (isAuthPage) return;
 
     const token = localStorage.getItem("token");
-    const user = JSON.parse(localStorage.getItem("user") || "null") as UserType | null;
+    const user = JSON.parse(
+      localStorage.getItem("user") || "null",
+    ) as UserType | null;
     const role = localStorage.getItem("role") || user?.role;
 
     if (!token || !user || role !== "admin") {
@@ -65,9 +60,12 @@ export default function DashboardLayout({
   const handleLogout = () => logoutMutation.mutate();
 
   const navLinks = [
-    { name: "Home", path: "/", icon: <Home size={18} /> },
-    { name: "Blogs", path: "/dashboard/view", icon: <FileText size={18} /> },
-    { name: "Projects", path: "/dashboard/projects/view", icon: <FolderKanban size={18} /> },
+    { name: "Overview", path: "/dashboard", icon: <Home size={18} /> },
+    {
+      name: "Projects",
+      path: "/dashboard/projects/view",
+      icon: <FolderKanban size={18} />,
+    },
   ];
 
   if (isAuthPage) return <>{children}</>;
@@ -75,7 +73,7 @@ export default function DashboardLayout({
 
   return (
     <div className="bg-black min-h-screen text-white">
-      <div className="md:hidden flex justify-between items-center px-4 py-3 bg-gray-900">
+      <div className="md:hidden flex justify-between items-center px-4 py-3 bg-gray-900 ">
         <h2 className="text-lg font-semibold flex items-center gap-2">
           <Settings className="w-5 h-5 text-gray-400" />
           Admin Dashboard

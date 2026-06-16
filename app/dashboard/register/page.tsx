@@ -1,4 +1,4 @@
-import RegisterPage from "@/Components/pages/blogs/register";
+import RegisterPage from "@/Components/pages/dashboard/register";
 
 export default function RegisterRoute() {
   return <RegisterPage />;

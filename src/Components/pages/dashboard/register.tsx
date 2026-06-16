@@ -27,12 +27,11 @@ const RegisterPage: React.FC = () => {
       });
 
       if (res.status === 201) {
-        alert("✅ Registration successful! Please log in.");
+        alert("Registration successful! Please log in.");
         router.push("/dashboard/login");
       }
     } catch (err: any) {
-      const msg = err.response?.data?.error || err.response?.data?.message || "Something went wrong.";
-      setError(msg);
+      setError(err.response?.data?.error || err.response?.data?.message || "Something went wrong.");
     } finally {
       setLoading(false);
     }
@@ -44,12 +43,8 @@ const RegisterPage: React.FC = () => {
         onSubmit={handleRegister}
         className="bg-gray-800 p-8 rounded-2xl shadow-lg w-full max-w-md border border-gray-700"
       >
-        <h2 className="text-2xl font-semibold text-center text-white mb-2">
-          Create Account
-        </h2>
-        <p className="text-gray-400 text-center text-sm mb-6">
-          Register a new admin user
-        </p>
+        <h2 className="text-2xl font-semibold text-center text-white mb-2">Create Account</h2>
+        <p className="text-gray-400 text-center text-sm mb-6">Register a new admin user</p>
 
         {error && (
           <p className="text-red-400 bg-red-950 border border-red-800 rounded-md p-2 text-center mb-4 text-sm">
@@ -57,7 +52,6 @@ const RegisterPage: React.FC = () => {
           </p>
         )}
 
-        {/* Username — maps to users.username */}
         <div className="mb-4">
           <label className="block text-gray-300 text-sm mb-1">Username</label>
           <input
@@ -70,7 +64,6 @@ const RegisterPage: React.FC = () => {
           />
         </div>
 
-        {/* Password — maps to users.password */}
         <div className="mb-4">
           <label className="block text-gray-300 text-sm mb-1">Password</label>
           <input
@@ -83,7 +76,6 @@ const RegisterPage: React.FC = () => {
           />
         </div>
 
-        {/* Role — maps to users.role (default: admin) */}
         <div className="mb-4">
           <label className="block text-gray-300 text-sm mb-1">Role</label>
           <select
@@ -96,11 +88,9 @@ const RegisterPage: React.FC = () => {
           </select>
         </div>
 
-        {/* Picture — maps to users.picture (optional) */}
         <div className="mb-6">
           <label className="block text-gray-300 text-sm mb-1">
-            Profile Picture URL{" "}
-            <span className="text-gray-500">(optional)</span>
+            Profile Picture URL <span className="text-gray-500">(optional)</span>
           </label>
           <input
             type="url"
@@ -115,9 +105,7 @@ const RegisterPage: React.FC = () => {
           type="submit"
           disabled={loading}
           className={`w-full py-2 rounded-md font-semibold transition ${
-            loading
-              ? "bg-gray-600 cursor-not-allowed"
-              : "bg-blue-600 hover:bg-blue-700"
+            loading ? "bg-gray-600 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
           } text-white`}
         >
           {loading ? "Registering..." : "Register"}
