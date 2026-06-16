@@ -2,7 +2,97 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --bg-primary: #06060f;
+  --bg-secondary: #0d0d1a;
+  --accent-violet: #7c3aed;
+  --accent-cyan: #06b6d4;
+}
+
+* {
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+html {
+  cursor: none;
+}
+
+body {
+  background-color: var(--bg-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+a, button {
+  cursor: none;
+}
+
+/* Outlined text */
 .text-outline {
-    color: transparent;
-    -webkit-text-stroke: 0.3px white;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.12);
+}
+
+/* Gradient text — violet → indigo → cyan */
+.gradient-text {
+  background: linear-gradient(135deg, #a78bfa 0%, #818cf8 45%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+}
+
+/* Glassmorphism */
+.glass-card {
+  background: rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+}
+
+/* Gradient border trick */
+.gradient-border {
+  position: relative;
+  border-radius: 16px;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(124,58,237,0.5), rgba(6,182,212,0.5));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Input focus glow */
+.input-glow:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(124,58,237,0.4), 0 0 20px rgba(124,58,237,0.12);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--accent-violet), var(--accent-cyan));
+  border-radius: 2px;
+}
+
+/* On mobile, restore cursor */
+@media (max-width: 1024px) {
+  html, body, a, button {
+    cursor: auto;
+  }
 }

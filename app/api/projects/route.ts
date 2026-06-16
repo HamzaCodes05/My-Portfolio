@@ -34,7 +34,11 @@ export async function POST(req: NextRequest) {
 
     let imagePath: string | null = null;
 
-    if (imageFile && imageFile.size > 0) {
+    // Prefer a Cloudinary (or any external) URL over a file upload
+    const imageUrl = formData.get("imageUrl") as string | null;
+    if (imageUrl && imageUrl.startsWith("http")) {
+      imagePath = imageUrl;
+    } else if (imageFile && imageFile.size > 0) {
       const uploadsDir = path.join(process.cwd(), "public", "uploads");
       await fs.mkdir(uploadsDir, { recursive: true });
       const filename = `${Date.now()}-${imageFile.name.replace(/\s+/g, "_")}`;
