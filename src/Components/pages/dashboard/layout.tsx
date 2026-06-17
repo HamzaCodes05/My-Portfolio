@@ -88,9 +88,9 @@ export default function DashboardLayout({
         </button>
       </div>
 
-      <div className="flex min-h-screen">
+      <div className="flex h-screen overflow-hidden">
         <aside
-          className={`fixed md:static top-0 left-0 z-40 h-full w-64 bg-gray-900 p-6 transform transition-transform duration-300
+          className={`fixed md:sticky top-0 left-0 z-40 h-screen w-64 bg-gray-900 p-6 flex flex-col shrink-0 transform transition-transform duration-300
             ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}
         >
           <h2 className="text-lg font-semibold flex items-center gap-2">
@@ -120,7 +120,7 @@ export default function DashboardLayout({
           <button
             onClick={handleLogout}
             disabled={logoutMutation.isPending}
-            className={`mt-8 flex items-center gap-2 w-full justify-center py-2 rounded-lg transition-colors
+            className={`mt-auto flex items-center gap-2 w-full justify-center py-2 rounded-lg transition-colors
               ${
                 logoutMutation.isPending
                   ? "bg-gray-600 cursor-not-allowed"
@@ -139,7 +139,7 @@ export default function DashboardLayout({
           />
         )}
 
-        <main className="flex-1 p-6 md:p-8 bg-black overflow-y-auto">
+        <main className="flex-1 p-6 md:p-8 bg-black overflow-y-auto h-screen">
           {children}
         </main>
       </div>

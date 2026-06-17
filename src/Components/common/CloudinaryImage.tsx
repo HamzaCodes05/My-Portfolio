@@ -16,7 +16,7 @@ interface CloudinaryImageProps {
 const CloudinaryImage = ({ src, alt, width = 1200, className, style }: CloudinaryImageProps) => {
   const resolvedSrc = src?.startsWith("http")
     ? cloudinaryUrl(src, { width })
-    : `http://localhost:8000${src}`;
+    : src; // local paths served from Next.js /public
 
   return (
     <img

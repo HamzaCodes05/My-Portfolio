@@ -27,6 +27,16 @@ export const useAddProject = () => {
   });
 };
 
+export const useUpdateProject = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async ({ id, formData }: { id: number; formData: FormData }) => {
+      await axios.put(`/api/projects/${id}`, formData);
+    },
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["projects"] }),
+  });
+};
+
 export const useDeleteProject = () => {
   const queryClient = useQueryClient();
   return useMutation({

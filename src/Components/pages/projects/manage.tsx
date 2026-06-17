@@ -105,7 +105,13 @@ export default function ManageProjects() {
                     </td>
                     <td className="p-3">{project.title}</td>
                     <td className="p-3">{project.link}</td>
-                    <td className="p-3 text-center space-x-3">
+                    <td className="p-3 text-center space-x-4">
+                      <button
+                        onClick={() => router.push(`/dashboard/projects/edit?id=${project.id}`)}
+                        className="text-blue-400 hover:text-blue-300 font-medium"
+                      >
+                        ✏️ Edit
+                      </button>
                       <button
                         onClick={() => deleteProject.mutate(project.id)}
                         className="text-red-500 hover:text-red-600 font-medium"
