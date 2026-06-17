@@ -32,4 +32,4 @@ dist-ssr
 .next
 server/dist
 
-/public
+/public/uploads
