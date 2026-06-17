@@ -1,3 +1,5 @@
+"use client";
+
 import Avatar from "../../assets/image.png";
 import Container from "../common/container";
 import ScrollReveal from "../common/scrollReveal";

@@ -1,3 +1,5 @@
+"use client";
+
 import Container from "../common/container";
 import ScrollReveal from "../common/scrollReveal";
 import { ArrowRight } from "lucide-react";
@@ -7,7 +9,8 @@ const services = [
     id: 1,
     num: "01",
     title: "Branding",
-    description: "Distinctive identities that resonate — logos, color systems, and brand guidelines that make you memorable.",
+    description:
+      "Distinctive identities that resonate — logos, color systems, and brand guidelines that make you memorable.",
     accent: "from-violet-600 to-purple-600",
     border: "hover:border-violet-500/30",
   },
@@ -15,7 +18,8 @@ const services = [
     id: 2,
     num: "02",
     title: "Web Design & Dev",
-    description: "Modern, responsive interfaces built with React and Next.js. Pixel-perfect design with flawless performance.",
+    description:
+      "Modern, responsive interfaces built with React and Next.js. Pixel-perfect design with flawless performance.",
     accent: "from-indigo-600 to-blue-500",
     border: "hover:border-indigo-500/30",
   },
@@ -23,7 +27,8 @@ const services = [
     id: 3,
     num: "03",
     title: "Digital Marketing",
-    description: "Strategic digital campaigns that drive growth — social, SEO, and content that converts visitors into clients.",
+    description:
+      "Strategic digital campaigns that drive growth — social, SEO, and content that converts visitors into clients.",
     accent: "from-cyan-600 to-teal-500",
     border: "hover:border-cyan-500/30",
   },
@@ -31,7 +36,8 @@ const services = [
     id: 4,
     num: "04",
     title: "Illustration",
-    description: "Creative artwork and visual storytelling. From digital illustration to graphic design that stands out.",
+    description:
+      "Creative artwork and visual storytelling. From digital illustration to graphic design that stands out.",
     accent: "from-pink-600 to-rose-500",
     border: "hover:border-pink-500/30",
   },
@@ -39,7 +45,11 @@ const services = [
 
 const Services = () => {
   return (
-    <section id="services" style={{ background: "#06060f" }} className="min-h-screen flex items-center">
+    <section
+      id="services"
+      style={{ background: "#06060f" }}
+      className="min-h-screen flex items-center"
+    >
       <Container className="py-20 w-full">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-6">
@@ -58,7 +68,11 @@ const Services = () => {
           </div>
           <ScrollReveal delay={200} direction="right">
             <button
-              onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}
+              onClick={() =>
+                document
+                  .getElementById("work")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
               className="flex items-center gap-2 text-gray-500 hover:text-white transition-colors text-sm font-medium group"
             >
               See All Projects
@@ -75,7 +89,9 @@ const Services = () => {
                 className={`group flex items-start justify-between gap-6 py-8 border-b border-white/5 hover:border-white/10 transition-all duration-300 cursor-default ${service.border}`}
               >
                 <div className="flex items-start gap-6 flex-1">
-                  <span className={`text-xs font-bold bg-gradient-to-r ${service.accent} bg-clip-text text-transparent pt-1 w-8 shrink-0`}>
+                  <span
+                    className={`text-xs font-bold bg-gradient-to-r ${service.accent} bg-clip-text text-transparent pt-1 w-8 shrink-0`}
+                  >
                     {service.num}
                   </span>
                   <div>
@@ -92,11 +108,6 @@ const Services = () => {
             </ScrollReveal>
           ))}
         </div>
-
-        {/* CTA */}
-        <ScrollReveal delay={400}>
-        </ScrollReveal>
-
       </Container>
     </section>
   );
