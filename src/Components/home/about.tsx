@@ -3,13 +3,25 @@ import Container from "../common/container";
 import ScrollReveal from "../common/scrollReveal";
 
 const skills = [
-  "React", "Next.js", "TypeScript", "Tailwind CSS",
-  "Node.js", "MySQL", "Figma", "UI/UX Design",
+  "React",
+  "Next.js",
+  "TypeScript",
+  "Tailwind CSS",
+  "Node.js",
+  "JavaScript",
+  "Figma",
+  "HTML & CSS",
+  "Bootstrap",
+  "React Native",
 ];
 
 const About = () => {
   return (
-    <section id="about" style={{ background: "#06060f" }} className="min-h-screen flex items-center">
+    <section
+      id="about"
+      style={{ background: "#06060f" }}
+      className="min-h-screen flex items-center"
+    >
       <Container className="py-20 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           {/* Text */}
@@ -29,9 +41,10 @@ const About = () => {
 
             <ScrollReveal delay={200}>
               <p className="text-gray-400 text-lg leading-relaxed mb-6">
-                I'm a passionate web developer focused on building modern, responsive,
-                and user-friendly websites. I turn complex problems into clean,
-                scalable solutions using React, TypeScript, and Tailwind CSS.
+                I'm a passionate web developer focused on building modern,
+                responsive, and user-friendly websites. I turn complex problems
+                into clean, scalable solutions using React, TypeScript, and
+                Tailwind CSS.
               </p>
               <p className="text-gray-500 leading-relaxed mb-10">
                 Beyond coding, I love graphic design and visual storytelling —
@@ -42,7 +55,9 @@ const About = () => {
 
             <ScrollReveal delay={300}>
               <div className="mb-10">
-                <p className="text-gray-600 text-xs uppercase tracking-widest mb-4 font-medium">Tech Stack</p>
+                <p className="text-gray-600 text-xs uppercase tracking-widest mb-4 font-medium">
+                  Tech Stack
+                </p>
                 <div className="flex flex-wrap gap-2">
                   {skills.map((skill) => (
                     <span
@@ -59,13 +74,21 @@ const About = () => {
             <ScrollReveal delay={400}>
               <div className="flex gap-4">
                 <button
-                  onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}
+                  onClick={() =>
+                    document
+                      .getElementById("work")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
                   className="px-7 py-3 rounded-full bg-gradient-to-r from-violet-600 to-cyan-500 text-white text-sm font-semibold hover:opacity-90 transition-opacity shadow-[0_0_25px_rgba(124,58,237,0.3)]"
                 >
                   See My Work
                 </button>
                 <button
-                  onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                  onClick={() =>
+                    document
+                      .getElementById("contact")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
                   className="px-7 py-3 rounded-full border border-white/12 text-gray-300 text-sm font-semibold hover:border-white/25 hover:text-white hover:bg-white/4 transition-all"
                 >
                   Contact Me
@@ -91,7 +114,6 @@ const About = () => {
             </div>
           </ScrollReveal>
         </div>
-
       </Container>
     </section>
   );
