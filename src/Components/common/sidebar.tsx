@@ -155,7 +155,7 @@ const Sidebar = ({ collapsed, onToggle }: SidebarProps) => {
               }}
               className="w-full py-2.5 rounded-full text-center text-sm font-semibold bg-gradient-to-r from-violet-600 to-cyan-500 text-white shadow-[0_0_20px_rgba(124,58,237,0.3)] hover:opacity-90 transition-opacity"
             >
-              Hire Me
+              Contact Me
             </a>
           )}
           <div

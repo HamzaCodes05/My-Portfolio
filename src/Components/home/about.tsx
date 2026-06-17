@@ -83,16 +83,6 @@ const About = () => {
                 >
                   See My Work
                 </button>
-                <button
-                  onClick={() =>
-                    document
-                      .getElementById("contact")
-                      ?.scrollIntoView({ behavior: "smooth" })
-                  }
-                  className="px-7 py-3 rounded-full border border-white/12 text-gray-300 text-sm font-semibold hover:border-white/25 hover:text-white hover:bg-white/4 transition-all"
-                >
-                  Contact Me
-                </button>
               </div>
             </ScrollReveal>
           </div>

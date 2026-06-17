@@ -3,7 +3,7 @@
 import { useProjects } from "../pages/hooks/useProjects";
 import Container from "../common/container";
 import ScrollReveal from "../common/scrollReveal";
-import { ExternalLink, ArrowRight } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import CloudinaryImage from "../common/CloudinaryImage";
 
 const MyWork = () => {
@@ -27,15 +27,6 @@ const MyWork = () => {
               </h2>
             </ScrollReveal>
           </div>
-          <ScrollReveal delay={200} direction="right">
-            <button
-              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-              className="flex items-center gap-2 text-gray-500 hover:text-white transition-colors text-sm font-medium group"
-            >
-              Get in Touch
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
-          </ScrollReveal>
         </div>
 
         {/* Projects Grid */}

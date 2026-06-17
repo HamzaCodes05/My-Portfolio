@@ -95,30 +95,6 @@ const Services = () => {
 
         {/* CTA */}
         <ScrollReveal delay={400}>
-          <div
-            className="mt-16 relative rounded-3xl p-px overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-violet-600/40 via-indigo-500/20 to-cyan-500/40" />
-            <div
-              className="relative rounded-3xl p-10 lg:p-14 flex flex-col sm:flex-row items-center justify-between gap-6"
-              style={{ background: "#0a0a18" }}
-            >
-              <div>
-                <p className="text-gray-500 text-xs uppercase tracking-widest mb-2">Ready to build something?</p>
-                <h3 className="text-2xl lg:text-3xl font-black text-white">
-                  Have a project in mind?{" "}
-                  <span className="gradient-text">Let's bring it to life.</span>
-                </h3>
-              </div>
-              <button
-                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                className="shrink-0 flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-violet-600 to-cyan-500 text-white font-semibold shadow-[0_0_30px_rgba(124,58,237,0.4)] hover:shadow-[0_0_50px_rgba(124,58,237,0.6)] hover:opacity-90 transition-all duration-300"
-              >
-                Get a Proposal
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
         </ScrollReveal>
 
       </Container>
