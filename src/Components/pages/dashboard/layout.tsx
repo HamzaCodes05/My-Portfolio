@@ -2,6 +2,7 @@
 
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
+import Cursor from "../../common/cursor";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Menu, LogOut, Home, FolderKanban, Settings } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -68,11 +69,12 @@ export default function DashboardLayout({
     },
   ];
 
-  if (isAuthPage) return <>{children}</>;
+  if (isAuthPage) return <><Cursor />{children}</>;
   if (!authorized) return null;
 
   return (
     <div className="bg-black min-h-screen text-white">
+      <Cursor />
       <div className="md:hidden flex justify-between items-center px-4 py-3 bg-gray-900 ">
         <h2 className="text-lg font-semibold flex items-center gap-2">
           <Settings className="w-5 h-5 text-gray-400" />
