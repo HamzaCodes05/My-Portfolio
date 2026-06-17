@@ -97,16 +97,17 @@ const Landing = () => {
                   →
                 </span>
               </button>
-              <button
-                onClick={() =>
-                  document
-                    .getElementById("contact")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-white/12 text-gray-300 font-semibold text-sm hover:border-white/25 hover:text-white hover:bg-white/4 transition-all duration-300"
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-white/12 text-gray-300 font-semibold text-sm hover:border-violet-500/50 hover:text-white hover:bg-violet-500/8 transition-all duration-300"
               >
-                Get in Touch
-              </button>
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+                </svg>
+                Resume
+              </a>
             </div>
           </ScrollReveal>
 
