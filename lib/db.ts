@@ -1,13 +1,11 @@
-import mysql from "mysql2/promise";
-import { drizzle } from "drizzle-orm/mysql2";
+import postgres from "postgres";
+import { drizzle } from "drizzle-orm/postgres-js";
 import * as schema from "./schema";
 
-const pool = mysql.createPool({
-  host: process.env.DB_HOST || "localhost",
-  user: process.env.DB_USER || "root",
-  password: process.env.DB_PASS || "",
-  database: process.env.DB_NAME || "my_portfolio",
-  port: Number(process.env.DB_PORT) || 3306,
-});
+if (!process.env.DATABASE_URL) {
+  throw new Error("DATABASE_URL environment variable is not set");
+}
 
-export const db = drizzle(pool, { schema, mode: "default" });
+const client = postgres(process.env.DATABASE_URL);
+
+export const db = drizzle(client, { schema });
