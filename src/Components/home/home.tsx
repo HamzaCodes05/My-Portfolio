@@ -5,6 +5,7 @@ import Landing from "./landing";
 import Experience from "./experience";
 import About from "./about";
 import Services from "./services";
+import Education from "./education";
 import MyWork from "./projects";
 import Contact from "./contact";
 import Footer from "../common/footer";
@@ -28,6 +29,7 @@ const Home = () => {
         <Landing />
         <Experience />
         <About />
+        <Education />
         <Services />
         <MyWork />
         <Contact />
